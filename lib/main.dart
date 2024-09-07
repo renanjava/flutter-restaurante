@@ -10,10 +10,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Oi',
-      home: Container(
-        color: const Color.fromARGB(255, 221, 9, 9),
-      ),
-    );
+        title: 'Oi',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Gerenciamento de pedidos pendentes"),
+          ),
+          body: Container(
+            color: Colors.blue,
+          ),
+          floatingActionButton: FloatingActionButton(onPressed: () {}),
+        ));
   }
 }
