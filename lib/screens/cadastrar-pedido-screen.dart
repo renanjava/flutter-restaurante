@@ -12,7 +12,10 @@ class CadastrarPedidoScreen extends StatefulWidget {
 }
 
 class _CadastrarPedidoScreenState extends State<CadastrarPedidoScreen> {
-  final TextEditingController _controller = TextEditingController();
+  TextEditingController _precoController = TextEditingController();
+  TextEditingController _dataController = TextEditingController();
+  TextEditingController _descricaoController = TextEditingController();
+
   Usuario? _selectedUsuario;
 
   @override
@@ -42,7 +45,17 @@ class _CadastrarPedidoScreenState extends State<CadastrarPedidoScreen> {
             ),
             SizedBox(height: 20),
             TextFormField(
-              controller: _controller,
+              controller: _precoController,
+              decoration: InputDecoration(labelText: "Preço do Pedido"),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: _dataController,
+              decoration: InputDecoration(labelText: "Data do Pedido"),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: _descricaoController,
               decoration: InputDecoration(labelText: "Descrição do Pedido"),
             ),
             SizedBox(height: 20),
@@ -54,7 +67,11 @@ class _CadastrarPedidoScreenState extends State<CadastrarPedidoScreen> {
                   ));
                 } else {
                   final pedido = Pedido(
-                      descricao: _controller.text, usuario: _selectedUsuario);
+                    usuario: _selectedUsuario,
+                    preco: _precoController.text,
+                    data: _dataController.text,
+                    descricao: _descricaoController.text,
+                  );
                   _selectedUsuario?.pedidos.add(pedido);
                   Navigator.pop(context, pedido);
                 }
