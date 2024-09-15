@@ -30,7 +30,7 @@ class _CadastrarPedidoScreenState extends State<CadastrarPedidoScreen> {
               value: _selectedUsuario,
               onChanged: (Usuario? newValue) {
                 setState(() {
-                  _selectedUsuario = newValue;
+                  _selectedUsuario = newValue!;
                 });
               },
               items: widget.usuarios.map((Usuario usuario) {
@@ -48,14 +48,15 @@ class _CadastrarPedidoScreenState extends State<CadastrarPedidoScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (_selectedUsuario != null) {
-                  final pedido = Pedido(descricao: _controller.text);
-                  _selectedUsuario!.pedidos.add(pedido);
-                  Navigator.pop(context, pedido);
-                } else {
+                if (_selectedUsuario == null) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('Selecione um usuário antes de salvar.'),
                   ));
+                } else {
+                  final pedido = Pedido(
+                      descricao: _controller.text, usuario: _selectedUsuario);
+                  _selectedUsuario?.pedidos.add(pedido);
+                  Navigator.pop(context, pedido);
                 }
               },
               child: Text("Salvar"),

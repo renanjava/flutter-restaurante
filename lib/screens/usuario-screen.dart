@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class Usuario {
   final String nome;
-  List<Pedido> pedidos;
-  Usuario({required this.nome, this.pedidos = const []});
+  List<Pedido> pedidos = [];
+  Usuario({required this.nome, List<Pedido>? pedidos});
 }
 
 class UsuarioScreen extends StatefulWidget {

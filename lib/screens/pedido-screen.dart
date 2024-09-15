@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class Pedido {
   final String descricao;
-  Usuario? usuario;
+  final Usuario? usuario;
 
-  Pedido({required this.descricao, this.usuario});
+  Pedido({required this.descricao, required this.usuario});
 }
 
 class PedidoScreen extends StatefulWidget {
@@ -33,8 +33,7 @@ class _PedidoScreenState extends State<PedidoScreen> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(pedidos[index].descricao),
-            subtitle: Text(
-                "Usuário: ${pedidos[index].usuario?.nome ?? 'Não atribuído'}"),
+            subtitle: Text("Usuário: ${pedidos[index].usuario?.nome}"),
           );
         },
       ),
